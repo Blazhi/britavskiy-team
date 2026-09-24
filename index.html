@@ -29,16 +29,12 @@ header.hero .logo{
   display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 14px rgba(0,0,0,.25);
 }
 header.hero h1{margin:0;font-size:20px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);}
-header.hero .menu-btn, header.hero .lang-btn{
+header.hero .lang-btn{
   position:absolute; top:calc(env(safe-area-inset-top,0px) + 14px);
   background:rgba(255,255,255,.25); border:none; color:#fff; height:38px;border-radius:19px;
-  font-size:14px; cursor:pointer; font-weight:700; font-family:inherit;
+  font-size:14px; cursor:pointer; font-weight:700; font-family:inherit; padding:0 14px;
 }
-header.hero .menu-btn{width:38px; padding:0; font-size:18px;}
-header.hero .lang-btn{padding:0 14px;}
-html[dir="rtl"] header.hero .menu-btn{left:14px;}
 html[dir="rtl"] header.hero .lang-btn{right:14px;}
-html[dir="ltr"] header.hero .menu-btn{right:14px;}
 html[dir="ltr"] header.hero .lang-btn{left:14px;}
 
 main{flex:1; padding:16px 16px 90px; overflow-x:hidden;}
@@ -84,25 +80,12 @@ nav.bottom button{
 nav.bottom button .ic{font-size:19px;}
 nav.bottom button.active{color:var(--accent);}
 
-.sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;z-index:20;}
-.sheet-overlay.open{display:block;}
-.sheet{
-  position:fixed; top:0; height:100%; width:78%; max-width:320px; background:var(--card);
-  transition:transform .22s ease; z-index:21; padding:calc(env(safe-area-inset-top,0px)+20px) 18px 18px;
-  overflow-y:auto;
-}
-html[dir="rtl"] .sheet{right:0; transform:translateX(100%);}
-html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
-.sheet.open{transform:none;}
-.sheet h3{margin-top:0;color:var(--accent);}
-.sheet a, .sheet .mlink{display:block;padding:12px 4px;border-bottom:1px solid var(--border);color:var(--text);text-decoration:none;font-size:14.5px;cursor:pointer;}
 </style>
 </head>
 <body>
 <div id="app">
 
   <header class="hero">
-    <button class="menu-btn" id="menuBtn">☰</button>
     <button class="lang-btn" id="langBtn">RU</button>
     <div class="logo">🥋</div>
     <h1>Britavsky Team - Martial Arts</h1>
@@ -281,20 +264,6 @@ html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
   </nav>
 </div>
 
-<div class="sheet-overlay" id="overlay"></div>
-<div class="sheet" id="sheet">
-  <h3 data-he="תפריט" data-ru="Меню"></h3>
-  <div class="mlink" data-target="home" data-he="ראשי" data-ru="Главная"></div>
-  <div class="mlink" data-target="schedule" data-he="מערכת שעות" data-ru="Расписание"></div>
-  <div class="mlink" data-target="news" data-he="הודעות ועדכונים" data-ru="Новости и обновления"></div>
-  <div class="mlink" data-target="payments" data-he="מדיניות תשלומים" data-ru="Политика оплаты"></div>
-  <div class="mlink" data-target="gear" data-he="ציוד מיגון חובה" data-ru="Обязательная экипировка"></div>
-  <div class="mlink" data-target="reschedule" data-he="שינוי / ביטול אימון" data-ru="Изменение / отмена тренировки"></div>
-  <div class="mlink" data-target="events" data-he="תחרויות ואירועים" data-ru="Соревнования и мероприятия"></div>
-  <div class="mlink" data-target="reminders" data-he="תזכורות חשובות" data-ru="Важные напоминания"></div>
-  <a href="https://wa.me/message/YSFQUW77QK6SL1" target="_blank" rel="noopener" data-he="צור קשר בוואטסאפ" data-ru="Связаться в WhatsApp"></a>
-</div>
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -310,11 +279,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.scrollTo(0,0);
   }
 
-  function openMenu(open){
-    document.getElementById('sheet').classList.toggle('open', open);
-    document.getElementById('overlay').classList.toggle('open', open);
-  }
-
   var currentLang = 'he';
   function applyLang(lang){
     document.querySelectorAll('[data-he]').forEach(function(el){
@@ -328,22 +292,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // --- wire up events ---
-  var menuBtn = document.getElementById('menuBtn');
-  if (menuBtn) menuBtn.addEventListener('click', function(){ openMenu(true); });
-
-  var overlay = document.getElementById('overlay');
-  if (overlay) overlay.addEventListener('click', function(){ openMenu(false); });
-
   var langBtn = document.getElementById('langBtn');
   if (langBtn) langBtn.addEventListener('click', function(){
     applyLang(currentLang === 'he' ? 'ru' : 'he');
   });
 
-  document.querySelectorAll('.navcard, .mlink').forEach(function(el){
+  document.querySelectorAll('.navcard').forEach(function(el){
     el.addEventListener('click', function(){
       var target = el.getAttribute('data-target');
       if (target) showView(target);
-      if (el.classList.contains('mlink')) openMenu(false);
     });
   });
 
