@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Britavsky Team - Martial Arts</title>
+<style>
+:root{
+  --accent:#E6BF00; --accent-light:#FFD400; --bg:#F0F0E0; --card:#FFFFFF;
+  --text:#181818; --sub:#5a5a5a; --border:#e4e0cf;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#161515; --card:#232222; --text:#f2f0e8; --sub:#bdbdbd; --border:#3a3a3a;}
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top:env(safe-area-inset-top,0px); height:100%;}
+body{margin:0; height:100%; font-family:"DM Sans","Segoe UI",Tahoma,sans-serif; background:var(--bg); color:var(--text);}
+#app{max-width:480px; margin:0 auto; min-height:100%; display:flex; flex-direction:column;}
+
+header.hero{
+  position:relative; padding-top:calc(env(safe-area-inset-top,0px) + 26px); padding-bottom:22px;
+  background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.55)),
+    linear-gradient(135deg,var(--accent-light),var(--accent));
+  color:#111; text-align:center; border-radius:0 0 26px 26px;
+}
+header.hero .logo{
+  width:78px;height:78px;border-radius:50%;background:#fff;margin:0 auto 10px;
+  display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+header.hero h1{margin:0;font-size:20px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+header.hero .menu-btn, header.hero .lang-btn{
+  position:absolute; top:calc(env(safe-area-inset-top,0px) + 14px);
+  background:rgba(255,255,255,.25); border:none; color:#fff; height:38px;border-radius:19px;
+  font-size:14px; cursor:pointer; font-weight:700; font-family:inherit;
+}
+header.hero .menu-btn{width:38px; padding:0; font-size:18px;}
+header.hero .lang-btn{padding:0 14px;}
+html[dir="rtl"] header.hero .menu-btn{left:14px;}
+html[dir="rtl"] header.hero .lang-btn{right:14px;}
+html[dir="ltr"] header.hero .menu-btn{right:14px;}
+html[dir="ltr"] header.hero .lang-btn{left:14px;}
+
+main{flex:1; padding:16px 16px 90px; overflow-x:hidden;}
+.view{display:none; animation:fade .18s ease;}
+.view.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+p.intro{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:14px 16px; line-height:1.7; font-size:15px;}
+
+.card{
+  display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--border);
+  border-radius:18px; padding:14px; margin-top:10px; text-decoration:none; color:var(--text); cursor:pointer;
+}
+.card .icon{
+  width:42px;height:42px;border-radius:12px;background:#FAF5E1;color:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
+}
+.card .body{flex:1;}
+.card .body .title{font-weight:700;font-size:15px;}
+.card .body .desc{font-size:12.5px;color:var(--sub);margin-top:2px;}
+.card .arrow{color:var(--sub);font-size:14px;}
+html[dir="ltr"] .card .arrow{transform:scaleX(-1);}
+
+h2.section{font-size:15px; margin:22px 0 8px; color:var(--text);}
+hr.div{border:none;border-top:2px solid var(--accent-light); width:65%; margin:20px auto;}
+
+.page-title{font-size:20px;font-weight:800;margin:6px 0 14px;}
+.rich{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:16px; line-height:1.85; font-size:14.5px;}
+.rich h3{color:var(--accent);margin:16px 0 6px;font-size:15.5px;}
+.rich h3:first-child{margin-top:0;}
+.rich .line{margin:2px 0;}
+img.cover{width:100%;border-radius:18px;margin-top:4px;}
+
+nav.bottom{
+  position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px;
+  background:var(--card); border-top:1px solid var(--border);
+  display:flex; padding-bottom:env(safe-area-inset-bottom,0px);
+}
+nav.bottom button{
+  flex:1; background:none; border:none; padding:10px 4px 8px; font-family:inherit; color:var(--sub);
+  font-size:11px; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px;
+}
+nav.bottom button .ic{font-size:19px;}
+nav.bottom button.active{color:var(--accent);}
+
+.sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;z-index:20;}
+.sheet-overlay.open{display:block;}
+.sheet{
+  position:fixed; top:0; height:100%; width:78%; max-width:320px; background:var(--card);
+  transition:transform .22s ease; z-index:21; padding:calc(env(safe-area-inset-top,0px)+20px) 18px 18px;
+  overflow-y:auto;
+}
+html[dir="rtl"] .sheet{right:0; transform:translateX(100%);}
+html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
+.sheet.open{transform:none;}
+.sheet h3{margin-top:0;color:var(--accent);}
+.sheet a, .sheet .mlink{display:block;padding:12px 4px;border-bottom:1px solid var(--border);color:var(--text);text-decoration:none;font-size:14.5px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header class="hero">
+    <button class="menu-btn" onclick="toggleMenu(true)">☰</button>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">RU</button>
+    <div class="logo">🥋</div>
+    <h1>Britavsky Team - Martial Arts</h1>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="view-home" class="view active">
+      <p class="intro" data-he="בריטבסקי טים הוא מועדון אימוני אומנויות לחימה קיקבוקס וקרב מגע ייחודי לילדים, נוער ובוגרים. סניף קריית מוצקין: רנ&quot;ס 35, סניף חיפה: צה&quot;ל 16." data-ru="Britavsky Team — клуб единоборств: кикбоксинг и контактный бой для детей, подростков и взрослых. Филиал Кирьят-Моцкин: ул. Ранак 35, филиал Хайфа: ул. Цахаль 16."></p>
+
+      <a class="card" href="https://form.jotform.com/262426118520046" target="_blank" rel="noopener">
+        <div class="icon">👤</div>
+        <div class="body">
+          <div class="title" data-he="הרשמה למועדון" data-ru="Регистрация в клуб"></div>
+          <div class="desc" data-he="לילדים ונוער" data-ru="Для детей и подростков"></div>
+        </div>
+        <div class="arrow">‹</div>
+      </a>
+
+      <div class="card" onclick="showView('schedule')">
+        <div class="icon">📅</div>
+        <div class="body">
+          <div class="title" data-he="מערכת שעות אימוני קבוצה" data-ru="Расписание групповых тренировок"></div>
+          <div class="desc" data-he="התאימו יום שנוחים לכם" data-ru="Выберите удобный день"></div>
+        </div>
+        <div class="arrow">‹</div>
+      </div>
+
+      <a class="card" href="https://pages.greeninvoice.co.il/payments/links/245d9e50-5f2a-41df-9885-9661b8f085e1" target="_blank" rel="noopener">
+        <div class="icon">💳</div>
+        <div class="body">
+          <div class="title" data-he="לינק לתשלום מנוי" data-ru="Ссылка для оплаты абонемента"></div>
+          <div class="desc" data-he="תשלום מנוי חודשי" data-ru="Оплата ежемесячного абонемента"></div>
+        </div>
+        <div class="arrow">‹</div>
+      </a>
+
+      <div class="card" onclick="showView('payments')">
+        <div class="icon">💳</div>
+        <div class="body">
+          <div class="title" data-he="מדיניות תשלומים" data-ru="Политика оплаты"></div>
+          <div class="desc" data-he="מחירון, השלמת אימונים, ביטול מנוי והוראת קבע" data-ru="Цены, отработка тренировок, отмена абонемента и постоянное поручение"></div>
+        </div>
+        <div class="arrow">‹</div>
+      </div>
+
+      <a class="card" href="https://wa.me/message/YSFQUW77QK6SL1" target="_blank" rel="noopener">
+        <div class="icon">➡️</div>
+        <div class="body">
+          <div class="title" data-he="קביעת אימון אישי" data-ru="Запись на персональную тренировку"></div>
+          <div class="desc" data-he="אימון מותאם לפי צרכיו האישיים" data-ru="Тренировка, подобранная под личные потребности"></div>
+        </div>
+        <div class="arrow">‹</div>
+      </a>
+
+      <p class="intro" style="margin-top:16px;" data-he="תזכורת להורים ולתלמידים: יש להגיע כמה דקות לפני האימון, להביא מים וציוד אימון מתאים, ולבדוק עדכונים לפני ההגעה." data-ru="Напоминание родителям и ученикам: приходите за несколько минут до тренировки, берите воду и подходящую экипировку, проверяйте обновления перед приходом."></p>
+
+      <hr class="div">
+
+      <h2 class="section" data-he="הודעות ועדכונים" data-ru="Новости и обновления"></h2>
+      <div class="card" onclick="showView('news')">
+        <div class="icon">📣</div>
+        <div class="body">
+          <div class="title" data-he="עדכונים שינויים וביטולים" data-ru="Обновления, изменения и отмены"></div>
+          <div class="desc" data-he="בדקו שינויים במערכת, חגים ואירועים" data-ru="Проверяйте изменения в расписании, праздники и мероприятия"></div>
+        </div>
+        <div class="arrow">‹</div>
+      </div>
+      <div class="card" onclick="showView('gear')">
+        <div class="icon">✔️</div>
+        <div class="body">
+          <div class="title" data-he="ציוד מיגון חובה לאימונים" data-ru="Обязательная защитная экипировка"></div>
+          <div class="desc" data-he="מגן שיניים, כפפות אגרוף מתאימות, מגני רגליים, קסדה + חולצת מועדון" data-ru="Капа, боксёрские перчатки нужного размера, защита ног, шлем + футболка клуба"></div>
+        </div>
+        <div class="arrow">‹</div>
+      </div>
+
+      <h2 class="section" data-he="פרטי קשר" data-ru="Контакты"></h2>
+      <div class="card">
+        <div class="icon">📞</div>
+        <div class="body"><div class="title" data-he="צור קשר עם המועדון" data-ru="Связаться с клубом"></div></div>
+        <a href="https://wa.me/message/YSFQUW77QK6SL1" target="_blank" rel="noopener" style="background:var(--accent);color:#181818;padding:7px 14px;border-radius:10px;font-size:12.5px;text-decoration:none;font-weight:700;" data-he="שלחו לנו הודעה" data-ru="Написать нам"></a>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section id="view-schedule" class="view">
+      <div class="page-title" data-he="מערכת שעות" data-ru="Расписание"></div>
+      <div class="rich" data-he="מגן שינים בקבוצה, כפפות אגרוף במידה מתאימה, מגני רגליים, קסדה + חולצת מועדון — טבלת השעות המלאה לפי ענפים וגילאים מוצגת כאן." data-ru="Капа, перчатки нужного размера, защита ног, шлем + футболка клуба — полная таблица расписания по видам спорта и возрастам представлена здесь."></div>
+      <div class="rich" style="margin-top:12px; text-align:center; color:var(--sub);" data-he="📷 תמונת מערכת השעות" data-ru="📷 Изображение расписания"></div>
+    </section>
+
+    <!-- NEWS -->
+    <section id="view-news" class="view">
+      <div class="page-title" data-he="הודעות ועדכונים" data-ru="Новости и обновления"></div>
+      <div class="card" onclick="showView('reschedule')">
+        <div class="icon">▲</div>
+        <div class="body"><div class="title" data-he="שינוי / ביטול אימון" data-ru="Изменение / отмена тренировки"></div></div>
+        <div class="arrow">‹</div>
+      </div>
+      <div class="card" onclick="showView('events')">
+        <div class="icon">🏆</div>
+        <div class="body">
+          <div class="title" data-he="תחרויות ואירועים" data-ru="Соревнования и мероприятия"></div>
+          <div class="desc" data-he="תאריך יום ספארינגים (קרבות קלים) במועדון יפורסם בקרוב" data-ru="Дата дня спаррингов (лёгких боёв) в клубе будет объявлена позже"></div>
+        </div>
+        <div class="arrow">‹</div>
+      </div>
+      <div class="card" onclick="showView('reminders')">
+        <div class="icon">✔️</div>
+        <div class="body">
+          <div class="title" data-he="תזכורות חשובות" data-ru="Важные напоминания"></div>
+          <div class="desc" data-he="יש להגיע עם מים, מגן שיניים, כפפות אגרוף, מגני רגליים, קסדה וחולצת מועדון" data-ru="Приходите с водой, капой, перчатками, защитой ног, шлемом и футболкой клуба"></div>
+        </div>
+        <div class="arrow">‹</div>
+      </div>
+    </section>
+
+    <!-- PAYMENTS POLICY -->
+    <section id="view-payments" class="view">
+      <div class="page-title" data-he="מדיניות תשלומים" data-ru="Политика оплаты"></div>
+      <div class="rich">
+        <h3 data-he="מחירון" data-ru="Прайс-лист"></h3>
+        <div class="line" data-he="אימון קבוצתי בודד – ₪50" data-ru="Разовая групповая тренировка – 50 ₪"></div>
+        <div class="line" data-he="מנוי 2 אימונים בשבוע – 350 ₪ לחודש" data-ru="Абонемент 2 тренировки в неделю – 350 ₪ в месяц"></div>
+        <div class="line" data-he="מנוי 3 אימונים בשבוע – 450 ₪ לחודש" data-ru="Абонемент 3 тренировки в неделю – 450 ₪ в месяц"></div>
+        <div class="line" data-he="מנוי 4 אימונים בשבוע – 550 ₪ לחודש" data-ru="Абонемент 4 тренировки в неделю – 550 ₪ в месяц"></div>
+        <h3 data-he="🔄 השלמת אימונים" data-ru="🔄 Отработка тренировок"></h3>
+        <div class="line" data-he="ניתן להשלים אימון שבוטל, בהתאם למערכת השעות ולזמינות המועדון. השלמות אינן ניתנות להעברה לחודש הבא." data-ru="Пропущенную тренировку можно отработать согласно расписанию и наличию мест в клубе. Отработки не переносятся на следующий месяц."></div>
+        <h3 data-he="💳 חיסורים, חגים והחזרים" data-ru="💳 Пропуски, праздники и возвраты"></h3>
+        <div class="line" data-he="התשלום עבור המנוי החודשי אינו תלוי במספר האימונים בפועל. אין החזר כספי עבור חיסורים, חגים או השבתות עקב כוח עליון." data-ru="Оплата ежемесячного абонемента не зависит от фактического числа тренировок. Возврат средств за пропуски, праздники или форс-мажорные отмены не предусмотрен."></div>
+        <h3 data-he="❌ הפסקת מנוי" data-ru="❌ Прекращение абонемента"></h3>
+        <div class="line" data-he="הפסקת מנוי מחייבת הודעה מוקדמת של 14 יום מראש." data-ru="Для прекращения абонемента требуется уведомление за 14 дней."></div>
+        <h3 data-he="הוראת קבע" data-ru="Постоянное поручение"></h3>
+        <div class="line" data-he="ניתן להסדיר את המנוי באמצעות הוראת קבע אוטומטית." data-ru="Абонемент можно оформить через автоматическое постоянное поручение."></div>
+      </div>
+    </section>
+
+    <!-- GEAR -->
+    <section id="view-gear" class="view">
+      <div class="page-title" data-he="ציוד מיגון חובה לאימונים" data-ru="Обязательная защитная экипировка"></div>
+      <div class="rich">
+        <h3 data-he="הציוד הנדרש" data-ru="Необходимая экипировка"></h3>
+        <div class="line" data-he="מגן שיניים" data-ru="Капа"></div>
+        <div class="line" data-he="כפפות אגרוף במידה מתאימה" data-ru="Боксёрские перчатки нужного размера"></div>
+        <div class="line" data-he="מגני רגליים כולל הגנה לכפות רגליים" data-ru="Защита ног, включая защиту стоп"></div>
+        <div class="line" data-he="קסדה" data-ru="Шлем"></div>
+        <div class="line" data-he="מגן אשכים לבנים" data-ru="Защита паха для мальчиков"></div>
+        <div class="line" style="margin-top:10px;" data-he="לפנות למדריכים או ללחיצה על &quot;צור קשר&quot; לייעוץ בבחירת הציוד המתאים." data-ru="Обратитесь к тренерам или нажмите «Связаться с нами» за консультацией по выбору экипировки."></div>
+      </div>
+    </section>
+
+    <!-- RESCHEDULE -->
+    <section id="view-reschedule" class="view">
+      <div class="page-title" data-he="שינוי / ביטול אימון" data-ru="Изменение / отмена тренировки"></div>
+      <div class="rich" data-he="עדכונים על שינויים בלוח הזמנים יפורסמו כאן מבעוד מועד." data-ru="Обновления об изменениях в расписании будут публиковаться здесь заранее."></div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="view-events" class="view">
+      <div class="page-title" data-he="תחרויות ואירועים" data-ru="Соревнования и мероприятия"></div>
+      <div class="rich" data-he="פרטים על תחרויות ואירועים קרובים יעודכנו כאן." data-ru="Информация о ближайших соревнованиях и мероприятиях будет обновляться здесь."></div>
+    </section>
+
+    <!-- REMINDERS -->
+    <section id="view-reminders" class="view">
+      <div class="page-title" data-he="תזכורות חשובות" data-ru="Важные напоминания"></div>
+      <div class="rich" data-he="יש להגיע עם ביגוד מתאים, ציוד מיגון תקין וחוש עדכון קבוע לפני כל אימון." data-ru="Приходите в подходящей форме, с исправной защитной экипировкой, регулярно проверяйте обновления перед каждой тренировкой."></div>
+    </section>
+  </main>
+
+  <nav class="bottom">
+    <button data-v="home" class="active" onclick="showView('home')"><span class="ic">🏠</span><span data-he="ראשי" data-ru="Главная"></span></button>
+    <button data-v="schedule" onclick="showView('schedule')"><span class="ic">📅</span><span data-he="מערכת שעות" data-ru="Расписание"></span></button>
+    <button data-v="news" onclick="showView('news')"><span class="ic">🔔</span><span data-he="עדכונים" data-ru="Обновления"></span></button>
+  </nav>
+</div>
+
+<div class="sheet-overlay" id="overlay" onclick="toggleMenu(false)"></div>
+<div class="sheet" id="sheet">
+  <h3 data-he="תפריט" data-ru="Меню"></h3>
+  <div class="mlink" onclick="showView('home');toggleMenu(false)" data-he="ראשי" data-ru="Главная"></div>
+  <div class="mlink" onclick="showView('schedule');toggleMenu(false)" data-he="מערכת שעות" data-ru="Расписание"></div>
+  <div class="mlink" onclick="showView('news');toggleMenu(false)" data-he="הודעות ועדכונים" data-ru="Новости и обновления"></div>
+  <div class="mlink" onclick="showView('payments');toggleMenu(false)" data-he="מדיניות תשלומים" data-ru="Политика оплаты"></div>
+  <div class="mlink" onclick="showView('gear');toggleMenu(false)" data-he="ציוד מיגון חובה" data-ru="Обязательная экипировка"></div>
+  <div class="mlink" onclick="showView('reschedule');toggleMenu(false)" data-he="שינוי / ביטול אימון" data-ru="Изменение / отмена тренировки"></div>
+  <div class="mlink" onclick="showView('events');toggleMenu(false)" data-he="תחרויות ואירועים" data-ru="Соревнования и мероприятия"></div>
+  <div class="mlink" onclick="showView('reminders');toggleMenu(false)" data-he="תזכורות חשובות" data-ru="Важные напоминания"></div>
+  <a href="https://wa.me/message/YSFQUW77QK6SL1" target="_blank" rel="noopener" data-he="צור קשר בוואטסאפ" data-ru="Связаться в WhatsApp"></a>
+</div>
+
+<script>
+const bottomTabs = ['home','schedule','news'];
+function showView(v){
+  document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.querySelectorAll('nav.bottom button').forEach(b=>b.classList.toggle('active', b.dataset.v===v));
+  document.querySelector('main').scrollTo(0,0);
+  window.scrollTo(0,0);
+}
+function toggleMenu(open){
+  document.getElementById('sheet').classList.toggle('open', open);
+  document.getElementById('overlay').classList.toggle('open', open);
+}
+
+let currentLang = 'he';
+function applyLang(lang){
+  document.querySelectorAll('[data-he]').forEach(el=>{
+    el.textContent = lang === 'ru' ? el.getAttribute('data-ru') : el.getAttribute('data-he');
+  });
+  const html = document.getElementById('htmlRoot');
+  html.setAttribute('lang', lang === 'ru' ? 'ru' : 'he');
+  html.setAttribute('dir', lang === 'ru' ? 'ltr' : 'rtl');
+  document.getElementById('langBtn').textContent = lang === 'ru' ? 'עב' : 'RU';
+  currentLang = lang;
+}
+function toggleLang(){
+  applyLang(currentLang === 'he' ? 'ru' : 'he');
+}
+applyLang('he');
+</script>
+</body>
+</html>
