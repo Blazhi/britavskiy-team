@@ -33,7 +33,7 @@ body{
 
 header.hero{
   position:relative; overflow:hidden; padding:calc(env(safe-area-inset-top,0px) + 48px) 12px 48px;
-  background-color:#000; color:#fff; text-align:center; border-radius:0 0 26px 26px; min-height:360px;
+  background-color:#000; color:#fff; text-align:center; border-radius:0 0 26px 26px; min-height:360px; width:50%; margin:0 auto;
   display:flex; align-items:center; justify-content:center;
 }
 header.hero .hero-img{position:relative; z-index:1; display:block; width:100%; height:auto;}
@@ -78,6 +78,8 @@ hr.div{border:none;border-top:2px solid var(--accent-light); width:65%; margin:2
 .rich h3{color:var(--accent);margin:16px 0 6px;font-size:15.5px;}
 .rich h3:first-child{margin-top:0;}
 .rich .line{margin:2px 0;}
+.rich.warn h3{font-size:23px; font-weight:900;}
+.rich.warn .line{font-size:20px; font-weight:800; line-height:1.9;}
 img.cover{width:100%;display:block;border-radius:18px;margin-top:4px;object-fit:contain;background:var(--card);}
 
 nav.bottom{
@@ -176,8 +178,6 @@ nav.bottom button.active{color:var(--accent);}
 
       <p class="intro warn" data-he="תזכורת להורים ולתלמידים: יש להגיע כמה דקות לפני האימון, להביא מים וציוד אימון מתאים, ולבדוק עדכונים לפני ההגעה." data-ru="Напоминание родителям и ученикам: приходите за несколько минут до тренировки, берите воду и подходящую экипировку, проверяйте обновления перед приходом."></p>
 
-      <hr class="div">
-
       <h2 class="section" data-he="הודעות ועדכונים" data-ru="Новости и обновления"></h2>
       <div class="home-grid">
       <div class="card navcard" data-target="news">
@@ -217,7 +217,8 @@ nav.bottom button.active{color:var(--accent);}
         <div class="line" data-he="מגן שינים" data-ru="Капу"></div>
         <div class="line" data-he="כפפות אגרוף במידה מתאימה" data-ru="Боксёрские перчатки нужного размера"></div>
         <div class="line" data-he="מגני רגליים" data-ru="Защиту ног"></div>
-        <div class="line" data-he="קסדה + חולצת מועדון" data-ru="Шлем + футболку клуба"></div>
+        <div class="line" data-he="קסדה" data-ru="Шлем"></div>
+        <div class="line" data-he="חולצת מועדון" data-ru="Футболку клуба"></div>
       </div>
       <img class="cover" style="margin-top:14px;" src="https://www.jotform.com/uploads/YuliaSachkov/form_files/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%A9%D7%A2%D7%95%D7%AA%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F-6a9b08ee1156d5.96880496.PNG" alt="Расписание тренировок">
     </section>
