@@ -50,7 +50,7 @@ main{flex:1; padding:16px 16px 90px; overflow-x:hidden;}
 @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
 
 p.intro{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:16px 18px; line-height:1.75; font-size:15.5px; white-space:pre-line;}
-p.intro.lead{font-size:23px; font-weight:900; line-height:1.6; background:#181818; border-color:var(--accent-light); color:var(--accent-light);}
+p.intro.lead{font-size:23px; font-weight:900; line-height:1.6; background:#181818; border:none; color:var(--accent-light);}
 p.intro.warn{border:2px solid #E4342B; color:#E4342B; font-size:16.5px; font-weight:600; margin-top:26px;}
 
 .card{
@@ -71,6 +71,7 @@ h2.section{font-size:15px; margin:22px 0 8px; color:var(--text);}
 hr.div{border:none;border-top:2px solid var(--accent-light); width:65%; margin:20px auto;}
 
 .page-title{font-size:20px;font-weight:800;margin:6px 0 14px;}
+.schedule-title{font-size:34px; font-weight:900; text-align:center; margin:28px 0 16px; line-height:1.2;}
 .rich{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:16px; line-height:1.85; font-size:14.5px;}
 .rich.warn{border:2px solid var(--accent); background:#FFFDF0;}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .rich.warn{background:#2a2607;}}
@@ -209,7 +210,6 @@ nav.bottom button.active{color:var(--accent);}
 
     <!-- SCHEDULE -->
     <section id="view-schedule" class="view">
-      <div class="page-title" data-he="מערכת שעות" data-ru="Расписание"></div>
       <div class="rich warn">
         <h3 data-he="חובה להצטייד באימונים" data-ru="Обязательно для посещения тренировок необходимо иметь"></h3>
         <div class="line" data-he="מגן שינים" data-ru="Капу"></div>
@@ -218,7 +218,8 @@ nav.bottom button.active{color:var(--accent);}
         <div class="line" data-he="קסדה" data-ru="Шлем"></div>
         <div class="line" data-he="חולצת מועדון" data-ru="Футболку клуба"></div>
       </div>
-      <img class="cover" style="margin-top:14px;" src="https://www.jotform.com/uploads/YuliaSachkov/form_files/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%A9%D7%A2%D7%95%D7%AA%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F-6a9b08ee1156d5.96880496.PNG" alt="Расписание тренировок">
+      <h2 class="schedule-title" data-he="מערכת שעות" data-ru="Расписание"></h2>
+      <img class="cover" style="margin-top:0;" src="https://www.jotform.com/uploads/YuliaSachkov/form_files/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%A9%D7%A2%D7%95%D7%AA%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F-6a9b08ee1156d5.96880496.PNG" alt="Расписание тренировок">
     </section>
 
     <!-- NEWS -->
