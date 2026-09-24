@@ -102,8 +102,8 @@ html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
 <div id="app">
 
   <header class="hero">
-    <button class="menu-btn" onclick="toggleMenu(true)">☰</button>
-    <button class="lang-btn" onclick="toggleLang()" id="langBtn">RU</button>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <button class="lang-btn" id="langBtn">RU</button>
     <div class="logo">🥋</div>
     <h1>Britavsky Team - Martial Arts</h1>
   </header>
@@ -122,7 +122,7 @@ html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
         <div class="arrow">‹</div>
       </a>
 
-      <div class="card" onclick="showView('schedule')">
+      <div class="card navcard" data-target="schedule">
         <div class="icon">📅</div>
         <div class="body">
           <div class="title" data-he="מערכת שעות אימוני קבוצה" data-ru="Расписание групповых тренировок"></div>
@@ -140,7 +140,7 @@ html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
         <div class="arrow">‹</div>
       </a>
 
-      <div class="card" onclick="showView('payments')">
+      <div class="card navcard" data-target="payments">
         <div class="icon">💳</div>
         <div class="body">
           <div class="title" data-he="מדיניות תשלומים" data-ru="Политика оплаты"></div>
@@ -163,7 +163,7 @@ html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
       <hr class="div">
 
       <h2 class="section" data-he="הודעות ועדכונים" data-ru="Новости и обновления"></h2>
-      <div class="card" onclick="showView('news')">
+      <div class="card navcard" data-target="news">
         <div class="icon">📣</div>
         <div class="body">
           <div class="title" data-he="עדכונים שינויים וביטולים" data-ru="Обновления, изменения и отмены"></div>
@@ -171,7 +171,7 @@ html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
         </div>
         <div class="arrow">‹</div>
       </div>
-      <div class="card" onclick="showView('gear')">
+      <div class="card navcard" data-target="gear">
         <div class="icon">✔️</div>
         <div class="body">
           <div class="title" data-he="ציוד מיגון חובה לאימונים" data-ru="Обязательная защитная экипировка"></div>
@@ -198,12 +198,12 @@ html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
     <!-- NEWS -->
     <section id="view-news" class="view">
       <div class="page-title" data-he="הודעות ועדכונים" data-ru="Новости и обновления"></div>
-      <div class="card" onclick="showView('reschedule')">
+      <div class="card navcard" data-target="reschedule">
         <div class="icon">▲</div>
         <div class="body"><div class="title" data-he="שינוי / ביטול אימון" data-ru="Изменение / отмена тренировки"></div></div>
         <div class="arrow">‹</div>
       </div>
-      <div class="card" onclick="showView('events')">
+      <div class="card navcard" data-target="events">
         <div class="icon">🏆</div>
         <div class="body">
           <div class="title" data-he="תחרויות ואירועים" data-ru="Соревнования и мероприятия"></div>
@@ -211,7 +211,7 @@ html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
         </div>
         <div class="arrow">‹</div>
       </div>
-      <div class="card" onclick="showView('reminders')">
+      <div class="card navcard" data-target="reminders">
         <div class="icon">✔️</div>
         <div class="body">
           <div class="title" data-he="תזכורות חשובות" data-ru="Важные напоминания"></div>
@@ -275,55 +275,84 @@ html[dir="ltr"] .sheet{left:0; transform:translateX(-100%);}
   </main>
 
   <nav class="bottom">
-    <button data-v="home" class="active" onclick="showView('home')"><span class="ic">🏠</span><span data-he="ראשי" data-ru="Главная"></span></button>
-    <button data-v="schedule" onclick="showView('schedule')"><span class="ic">📅</span><span data-he="מערכת שעות" data-ru="Расписание"></span></button>
-    <button data-v="news" onclick="showView('news')"><span class="ic">🔔</span><span data-he="עדכונים" data-ru="Обновления"></span></button>
+    <button data-v="home" class="active"><span class="ic">🏠</span><span data-he="ראשי" data-ru="Главная"></span></button>
+    <button data-v="schedule"><span class="ic">📅</span><span data-he="מערכת שעות" data-ru="Расписание"></span></button>
+    <button data-v="news"><span class="ic">🔔</span><span data-he="עדכונים" data-ru="Обновления"></span></button>
   </nav>
 </div>
 
-<div class="sheet-overlay" id="overlay" onclick="toggleMenu(false)"></div>
+<div class="sheet-overlay" id="overlay"></div>
 <div class="sheet" id="sheet">
   <h3 data-he="תפריט" data-ru="Меню"></h3>
-  <div class="mlink" onclick="showView('home');toggleMenu(false)" data-he="ראשי" data-ru="Главная"></div>
-  <div class="mlink" onclick="showView('schedule');toggleMenu(false)" data-he="מערכת שעות" data-ru="Расписание"></div>
-  <div class="mlink" onclick="showView('news');toggleMenu(false)" data-he="הודעות ועדכונים" data-ru="Новости и обновления"></div>
-  <div class="mlink" onclick="showView('payments');toggleMenu(false)" data-he="מדיניות תשלומים" data-ru="Политика оплаты"></div>
-  <div class="mlink" onclick="showView('gear');toggleMenu(false)" data-he="ציוד מיגון חובה" data-ru="Обязательная экипировка"></div>
-  <div class="mlink" onclick="showView('reschedule');toggleMenu(false)" data-he="שינוי / ביטול אימון" data-ru="Изменение / отмена тренировки"></div>
-  <div class="mlink" onclick="showView('events');toggleMenu(false)" data-he="תחרויות ואירועים" data-ru="Соревнования и мероприятия"></div>
-  <div class="mlink" onclick="showView('reminders');toggleMenu(false)" data-he="תזכורות חשובות" data-ru="Важные напоминания"></div>
+  <div class="mlink" data-target="home" data-he="ראשי" data-ru="Главная"></div>
+  <div class="mlink" data-target="schedule" data-he="מערכת שעות" data-ru="Расписание"></div>
+  <div class="mlink" data-target="news" data-he="הודעות ועדכונים" data-ru="Новости и обновления"></div>
+  <div class="mlink" data-target="payments" data-he="מדיניות תשלומים" data-ru="Политика оплаты"></div>
+  <div class="mlink" data-target="gear" data-he="ציוד מיגון חובה" data-ru="Обязательная экипировка"></div>
+  <div class="mlink" data-target="reschedule" data-he="שינוי / ביטול אימון" data-ru="Изменение / отмена тренировки"></div>
+  <div class="mlink" data-target="events" data-he="תחרויות ואירועים" data-ru="Соревнования и мероприятия"></div>
+  <div class="mlink" data-target="reminders" data-he="תזכורות חשובות" data-ru="Важные напоминания"></div>
   <a href="https://wa.me/message/YSFQUW77QK6SL1" target="_blank" rel="noopener" data-he="צור קשר בוואטסאפ" data-ru="Связаться в WhatsApp"></a>
 </div>
 
 <script>
-const bottomTabs = ['home','schedule','news'];
-function showView(v){
-  document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
-  document.getElementById('view-'+v).classList.add('active');
-  document.querySelectorAll('nav.bottom button').forEach(b=>b.classList.toggle('active', b.dataset.v===v));
-  document.querySelector('main').scrollTo(0,0);
-  window.scrollTo(0,0);
-}
-function toggleMenu(open){
-  document.getElementById('sheet').classList.toggle('open', open);
-  document.getElementById('overlay').classList.toggle('open', open);
-}
+document.addEventListener('DOMContentLoaded', function () {
 
-let currentLang = 'he';
-function applyLang(lang){
-  document.querySelectorAll('[data-he]').forEach(el=>{
-    el.textContent = lang === 'ru' ? el.getAttribute('data-ru') : el.getAttribute('data-he');
+  function showView(v){
+    document.querySelectorAll('.view').forEach(function(el){ el.classList.remove('active'); });
+    var target = document.getElementById('view-' + v);
+    if (target) target.classList.add('active');
+    document.querySelectorAll('nav.bottom button').forEach(function(b){
+      b.classList.toggle('active', b.dataset.v === v);
+    });
+    var main = document.querySelector('main');
+    if (main) main.scrollTo(0,0);
+    window.scrollTo(0,0);
+  }
+
+  function openMenu(open){
+    document.getElementById('sheet').classList.toggle('open', open);
+    document.getElementById('overlay').classList.toggle('open', open);
+  }
+
+  var currentLang = 'he';
+  function applyLang(lang){
+    document.querySelectorAll('[data-he]').forEach(function(el){
+      el.textContent = lang === 'ru' ? el.getAttribute('data-ru') : el.getAttribute('data-he');
+    });
+    var html = document.getElementById('htmlRoot');
+    html.setAttribute('lang', lang === 'ru' ? 'ru' : 'he');
+    html.setAttribute('dir', lang === 'ru' ? 'ltr' : 'rtl');
+    document.getElementById('langBtn').textContent = lang === 'ru' ? 'עב' : 'RU';
+    currentLang = lang;
+  }
+
+  // --- wire up events ---
+  var menuBtn = document.getElementById('menuBtn');
+  if (menuBtn) menuBtn.addEventListener('click', function(){ openMenu(true); });
+
+  var overlay = document.getElementById('overlay');
+  if (overlay) overlay.addEventListener('click', function(){ openMenu(false); });
+
+  var langBtn = document.getElementById('langBtn');
+  if (langBtn) langBtn.addEventListener('click', function(){
+    applyLang(currentLang === 'he' ? 'ru' : 'he');
   });
-  const html = document.getElementById('htmlRoot');
-  html.setAttribute('lang', lang === 'ru' ? 'ru' : 'he');
-  html.setAttribute('dir', lang === 'ru' ? 'ltr' : 'rtl');
-  document.getElementById('langBtn').textContent = lang === 'ru' ? 'עב' : 'RU';
-  currentLang = lang;
-}
-function toggleLang(){
-  applyLang(currentLang === 'he' ? 'ru' : 'he');
-}
-applyLang('he');
+
+  document.querySelectorAll('.navcard, .mlink').forEach(function(el){
+    el.addEventListener('click', function(){
+      var target = el.getAttribute('data-target');
+      if (target) showView(target);
+      if (el.classList.contains('mlink')) openMenu(false);
+    });
+  });
+
+  document.querySelectorAll('nav.bottom button[data-v]').forEach(function(btn){
+    btn.addEventListener('click', function(){ showView(btn.dataset.v); });
+  });
+
+  applyLang('he');
+});
 </script>
 </body>
 </html>
