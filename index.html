@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Britavsky Team - Martial Arts</title>
+<link rel="icon" href="https://www.jotform.com/uploads/YuliaSachkov/form_files/262464131302445_mainPWAIcon.6a9b0d0721d61.png">
 <style>
 :root{
   --accent:#E6BF00; --accent-light:#FFD400; --bg:#F0F0E0; --card:#FFFFFF;
@@ -15,19 +16,34 @@
 }
 *{box-sizing:border-box;}
 html{scroll-padding-top:env(safe-area-inset-top,0px); height:100%;}
-body{margin:0; height:100%; font-family:"DM Sans","Segoe UI",Tahoma,sans-serif; background:var(--bg); color:var(--text);}
+body{
+  margin:0; min-height:100%; font-family:"DM Sans","Segoe UI",Tahoma,sans-serif; color:var(--text);
+  background-color:var(--bg);
+  background-image:linear-gradient(rgba(240,240,224,.93),rgba(240,240,224,.93)),
+    url('https://www.jotform.com/uploads/YuliaSachkov/form_files/WhatsApp%20Image%202026-09-04%20at%2019.44.41-6a9af59306d3a9.47138640.jpeg');
+  background-size:cover; background-attachment:fixed; background-position:center;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) body{
+    background-image:linear-gradient(rgba(22,21,21,.93),rgba(22,21,21,.93)),
+      url('https://www.jotform.com/uploads/YuliaSachkov/form_files/WhatsApp%20Image%202026-09-04%20at%2019.44.41-6a9af59306d3a9.47138640.jpeg');
+  }
+}
 #app{max-width:480px; margin:0 auto; min-height:100%; display:flex; flex-direction:column;}
 
 header.hero{
   position:relative; padding-top:calc(env(safe-area-inset-top,0px) + 26px); padding-bottom:22px;
-  background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.55)),
-    linear-gradient(135deg,var(--accent-light),var(--accent));
+  background-image:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.55)),
+    url('https://www.jotform.com/uploads/YuliaSachkov/form_files/WhatsApp%20Image%202026-09-04%20at%2019.49.25-6a9af6dbf0a075.63442924.jpeg');
+  background-size:cover; background-position:center;
   color:#111; text-align:center; border-radius:0 0 26px 26px;
 }
 header.hero .logo{
   width:78px;height:78px;border-radius:50%;background:#fff;margin:0 auto 10px;
   display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 14px rgba(0,0,0,.25);
+  overflow:hidden;
 }
+header.hero .logo img{width:100%;height:100%;object-fit:cover;}
 header.hero h1{margin:0;font-size:20px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);}
 header.hero .lang-btn{
   position:absolute; top:calc(env(safe-area-inset-top,0px) + 14px);
@@ -87,7 +103,7 @@ nav.bottom button.active{color:var(--accent);}
 
   <header class="hero">
     <button class="lang-btn" id="langBtn">RU</button>
-    <div class="logo">🥋</div>
+    <div class="logo"><img src="https://www.jotform.com/uploads/YuliaSachkov/form_files/britavsky%20team%20logo-6a9af75c0104c4.41745704.png" alt="Britavsky Team logo"></div>
     <h1>Britavsky Team - Martial Arts</h1>
   </header>
 
@@ -175,7 +191,8 @@ nav.bottom button.active{color:var(--accent);}
     <section id="view-schedule" class="view">
       <div class="page-title" data-he="מערכת שעות" data-ru="Расписание"></div>
       <div class="rich" data-he="מגן שינים בקבוצה, כפפות אגרוף במידה מתאימה, מגני רגליים, קסדה + חולצת מועדון — טבלת השעות המלאה לפי ענפים וגילאים מוצגת כאן." data-ru="Капа, перчатки нужного размера, защита ног, шлем + футболка клуба — полная таблица расписания по видам спорта и возрастам представлена здесь."></div>
-      <div class="rich" style="margin-top:12px; text-align:center; color:var(--sub);" data-he="📷 תמונת מערכת השעות" data-ru="📷 Изображение расписания"></div>
+      <img class="cover" style="margin-top:12px;" src="https://www.jotform.com/uploads/YuliaSachkov/form_files/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%A9%D7%A2%D7%95%D7%AA%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F-6a9b08ee1156d5.96880496.PNG" alt="Расписание тренировок">
+      <div class="rich" style="margin-top:12px; text-align:center; color:var(--sub);" data-he="לצפייה מלאה במערכת, לחצו על התמונה" data-ru="Для полного просмотра нажмите на изображение"></div>
     </section>
 
     <!-- NEWS -->
