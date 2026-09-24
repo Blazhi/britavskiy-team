@@ -21,7 +21,7 @@ body{
   background-color:var(--bg);
   background-image:linear-gradient(rgba(240,240,224,.35),rgba(240,240,224,.35)),
     url('https://www.jotform.com/uploads/YuliaSachkov/form_files/WhatsApp%20Image%202026-09-04%20at%2019.44.41-6a9af59306d3a9.47138640.jpeg');
-  background-size:cover; background-attachment:fixed; background-position:center;
+  background-size:cover; background-position:center top; background-repeat:no-repeat;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]) body{
@@ -34,12 +34,12 @@ body{
 header.hero{
   position:relative; padding-top:calc(env(safe-area-inset-top,0px) + 30px); padding-bottom:26px;
   background-color:#000;
-  background-image:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.65)),
+  background-image:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.25)),
     url('https://www.jotform.com/uploads/YuliaSachkov/form_files/WhatsApp%20Image%202026-09-04%20at%2019.49.25-6a9af6dbf0a075.63442924.jpeg');
   background-size:cover; background-position:center;
   color:#fff; text-align:center; border-radius:0 0 26px 26px;
 }
-header.hero h1{margin:0;font-size:30px;font-weight:800;letter-spacing:.3px;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.55);}
+header.hero .wordmark{width:78%; max-width:340px; height:auto; display:block; margin:0 auto;}
 header.hero .lang-btn{
   position:absolute; top:calc(env(safe-area-inset-top,0px) + 14px);
   background:rgba(255,255,255,.25); border:none; color:#fff; height:38px;border-radius:19px;
@@ -54,6 +54,7 @@ main{flex:1; padding:16px 16px 90px; overflow-x:hidden;}
 @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
 
 p.intro{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:16px 18px; line-height:1.75; font-size:15.5px; white-space:pre-line;}
+p.intro.lead{font-size:17.5px; font-weight:700;}
 p.intro.warn{border:2px solid #E4342B; color:#E4342B; font-size:16.5px; font-weight:600; margin-top:26px;}
 
 .card{
@@ -97,7 +98,7 @@ nav.bottom button.active{color:var(--accent);}
 /* Responsive: tablet / desktop */
 @media (min-width:700px){
   #app{max-width:760px;}
-  header.hero h1{font-size:38px;}
+  header.hero .wordmark{max-width:440px;}
   main{padding:24px 32px 100px;}
   .home-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px 16px;}
   .home-grid .card, .home-grid a.card{margin-top:0;}
@@ -106,6 +107,7 @@ nav.bottom button.active{color:var(--accent);}
 @media (min-width:1024px){
   #app{max-width:960px;}
   main{padding:32px 60px 110px;}
+  body{background-attachment:fixed;}
 }
 </style>
 </head>
@@ -114,13 +116,13 @@ nav.bottom button.active{color:var(--accent);}
 
   <header class="hero">
     <button class="lang-btn" id="langBtn">RU</button>
-    <h1>Britavsky Team</h1>
+    <img class="wordmark" src="https://www.jotform.com/uploads/YuliaSachkov/form_files/britavsky%20team%20logo-6a9af75c0104c4.41745704.png" alt="Britavsky Team">
   </header>
 
   <main>
     <!-- HOME -->
     <section id="view-home" class="view active">
-      <p class="intro" data-he="בריטבסקי טים הוא מועדון אימוני אומנויות לחימה קיקבוקס וקרב מגע ייחודי לילדים, נוער ובוגרים. 
+      <p class="intro lead" data-he="בריטבסקי טים הוא מועדון אימוני אומנויות לחימה קיקבוקס וקרב מגע ייחודי לילדים, נוער ובוגרים. 
 סניף קריית מוצקין: רנ&quot;ס 35,
 סניף חיפה: צה&quot;ל 16." data-ru="Britavsky Team — клуб единоборств: кикбоксинг и крав мага для детей, подростков и взрослых.
 סניף קריית מוצקין: רנ&quot;ס 35,
@@ -155,7 +157,7 @@ nav.bottom button.active{color:var(--accent);}
       </a>
 
       <div class="card navcard" data-target="payments">
-        <div class="icon">💳</div>
+        <div class="icon">ℹ️</div>
         <div class="body">
           <div class="title" data-he="מדיניות תשלומים" data-ru="Политика оплаты"></div>
           <div class="desc" data-he="מחירון, השלמת אימונים, ביטול מנוי והוראת קבע" data-ru="Цены, отработка тренировок, отмена абонемента и постоянное поручение"></div>
@@ -173,6 +175,8 @@ nav.bottom button.active{color:var(--accent);}
       </a>
       </div>
 
+      <img src="https://www.jotform.com/uploads/YuliaSachkov/form_files/britavsky%20team%20logo-6a9af75c0104c4.41745704.png" alt="Britavsky Team" style="display:block; margin:18px auto; width:60%; max-width:260px; height:auto;">
+
       <p class="intro warn" data-he="תזכורת להורים ולתלמידים: יש להגיע כמה דקות לפני האימון, להביא מים וציוד אימון מתאים, ולבדוק עדכונים לפני ההגעה." data-ru="Напоминание родителям и ученикам: приходите за несколько минут до тренировки, берите воду и подходящую экипировку, проверяйте обновления перед приходом."></p>
 
       <hr class="div">
@@ -188,7 +192,7 @@ nav.bottom button.active{color:var(--accent);}
         <div class="arrow">‹</div>
       </div>
       <div class="card navcard" data-target="gear">
-        <div class="icon">✔️</div>
+        <div class="icon">🥊</div>
         <div class="body">
           <div class="title" data-he="ציוד מיגון חובה לאימונים" data-ru="Обязательная защитная экипировка"></div>
           <div class="desc" data-he="מגן שיניים, כפפות אגרוף מתאימות, מגני רגליים, קסדה + חולצת מועדון" data-ru="Капа, боксёрские перчатки нужного размера, защита ног, шлем + футболка клуба"></div>
@@ -200,7 +204,10 @@ nav.bottom button.active{color:var(--accent);}
       <h2 class="section" data-he="פרטי קשר" data-ru="Контакты"></h2>
       <div class="card">
         <div class="icon">📞</div>
-        <div class="body"><div class="title" data-he="צור קשר עם המועדון" data-ru="Связаться с клубом"></div></div>
+        <div class="body">
+          <div class="title" data-he="צור קשר עם המועדון" data-ru="Связаться с клубом"></div>
+          <div class="desc"><a href="tel:+972524526286" style="color:inherit;text-decoration:none;">+972 52-452-6286</a></div>
+        </div>
         <a href="https://wa.me/message/YSFQUW77QK6SL1" target="_blank" rel="noopener" style="background:var(--accent);color:#181818;padding:7px 14px;border-radius:10px;font-size:12.5px;text-decoration:none;font-weight:700;" data-he="שלחו לנו הודעה" data-ru="Написать нам"></a>
       </div>
     </section>
