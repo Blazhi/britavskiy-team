@@ -19,32 +19,27 @@ html{scroll-padding-top:env(safe-area-inset-top,0px); height:100%;}
 body{
   margin:0; min-height:100%; font-family:"DM Sans","Segoe UI",Tahoma,sans-serif; color:var(--text);
   background-color:var(--bg);
-  background-image:linear-gradient(rgba(240,240,224,.93),rgba(240,240,224,.93)),
+  background-image:linear-gradient(rgba(240,240,224,.35),rgba(240,240,224,.35)),
     url('https://www.jotform.com/uploads/YuliaSachkov/form_files/WhatsApp%20Image%202026-09-04%20at%2019.44.41-6a9af59306d3a9.47138640.jpeg');
   background-size:cover; background-attachment:fixed; background-position:center;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]) body{
-    background-image:linear-gradient(rgba(22,21,21,.93),rgba(22,21,21,.93)),
+    background-image:linear-gradient(rgba(22,21,21,.55),rgba(22,21,21,.55)),
       url('https://www.jotform.com/uploads/YuliaSachkov/form_files/WhatsApp%20Image%202026-09-04%20at%2019.44.41-6a9af59306d3a9.47138640.jpeg');
   }
 }
 #app{max-width:480px; margin:0 auto; min-height:100%; display:flex; flex-direction:column;}
 
 header.hero{
-  position:relative; padding-top:calc(env(safe-area-inset-top,0px) + 26px); padding-bottom:22px;
-  background-image:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.55)),
+  position:relative; padding-top:calc(env(safe-area-inset-top,0px) + 30px); padding-bottom:26px;
+  background-color:#000;
+  background-image:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.65)),
     url('https://www.jotform.com/uploads/YuliaSachkov/form_files/WhatsApp%20Image%202026-09-04%20at%2019.49.25-6a9af6dbf0a075.63442924.jpeg');
   background-size:cover; background-position:center;
-  color:#111; text-align:center; border-radius:0 0 26px 26px;
+  color:#fff; text-align:center; border-radius:0 0 26px 26px;
 }
-header.hero .logo{
-  width:78px;height:78px;border-radius:50%;background:#fff;margin:0 auto 10px;
-  display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 14px rgba(0,0,0,.25);
-  overflow:hidden;
-}
-header.hero .logo img{width:100%;height:100%;object-fit:cover;}
-header.hero h1{margin:0;font-size:20px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+header.hero h1{margin:0;font-size:30px;font-weight:800;letter-spacing:.3px;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.55);}
 header.hero .lang-btn{
   position:absolute; top:calc(env(safe-area-inset-top,0px) + 14px);
   background:rgba(255,255,255,.25); border:none; color:#fff; height:38px;border-radius:19px;
@@ -58,19 +53,20 @@ main{flex:1; padding:16px 16px 90px; overflow-x:hidden;}
 .view.active{display:block;}
 @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
 
-p.intro{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:14px 16px; line-height:1.7; font-size:15px;}
+p.intro{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:16px 18px; line-height:1.75; font-size:15.5px; white-space:pre-line;}
+p.intro.warn{border:2px solid #E4342B; color:#E4342B; font-size:16.5px; font-weight:600; margin-top:26px;}
 
 .card{
-  display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--border);
-  border-radius:18px; padding:14px; margin-top:10px; text-decoration:none; color:var(--text); cursor:pointer;
+  display:flex; align-items:center; gap:14px; background:var(--card); border:2px solid var(--accent);
+  border-radius:18px; padding:18px; margin-top:12px; text-decoration:none; color:var(--text); cursor:pointer;
 }
 .card .icon{
-  width:42px;height:42px;border-radius:12px;background:#FAF5E1;color:var(--accent);
-  display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
+  width:48px;height:48px;border-radius:12px;background:#FAF5E1;color:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;
 }
 .card .body{flex:1;}
-.card .body .title{font-weight:700;font-size:15px;}
-.card .body .desc{font-size:12.5px;color:var(--sub);margin-top:2px;}
+.card .body .title{font-weight:700;font-size:16.5px;}
+.card .body .desc{font-size:13.5px;color:var(--sub);margin-top:3px;}
 .card .arrow{color:var(--sub);font-size:14px;}
 html[dir="ltr"] .card .arrow{transform:scaleX(-1);}
 
@@ -79,10 +75,12 @@ hr.div{border:none;border-top:2px solid var(--accent-light); width:65%; margin:2
 
 .page-title{font-size:20px;font-weight:800;margin:6px 0 14px;}
 .rich{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:16px; line-height:1.85; font-size:14.5px;}
+.rich.warn{border:2px solid var(--accent); background:#FFFDF0;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .rich.warn{background:#2a2607;}}
 .rich h3{color:var(--accent);margin:16px 0 6px;font-size:15.5px;}
 .rich h3:first-child{margin-top:0;}
 .rich .line{margin:2px 0;}
-img.cover{width:100%;border-radius:18px;margin-top:4px;}
+img.cover{width:100%;display:block;border-radius:18px;margin-top:4px;object-fit:contain;background:var(--card);}
 
 nav.bottom{
   position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px;
@@ -96,6 +94,19 @@ nav.bottom button{
 nav.bottom button .ic{font-size:19px;}
 nav.bottom button.active{color:var(--accent);}
 
+/* Responsive: tablet / desktop */
+@media (min-width:700px){
+  #app{max-width:760px;}
+  header.hero h1{font-size:38px;}
+  main{padding:24px 32px 100px;}
+  .home-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px 16px;}
+  .home-grid .card, .home-grid a.card{margin-top:0;}
+  nav.bottom{max-width:760px; border-radius:20px 20px 0 0;}
+}
+@media (min-width:1024px){
+  #app{max-width:960px;}
+  main{padding:32px 60px 110px;}
+}
 </style>
 </head>
 <body>
@@ -103,15 +114,19 @@ nav.bottom button.active{color:var(--accent);}
 
   <header class="hero">
     <button class="lang-btn" id="langBtn">RU</button>
-    <div class="logo"><img src="https://www.jotform.com/uploads/YuliaSachkov/form_files/britavsky%20team%20logo-6a9af75c0104c4.41745704.png" alt="Britavsky Team logo"></div>
-    <h1>Britavsky Team - Martial Arts</h1>
+    <h1>Britavsky Team</h1>
   </header>
 
   <main>
     <!-- HOME -->
     <section id="view-home" class="view active">
-      <p class="intro" data-he="בריטבסקי טים הוא מועדון אימוני אומנויות לחימה קיקבוקס וקרב מגע ייחודי לילדים, נוער ובוגרים. סניף קריית מוצקין: רנ&quot;ס 35, סניף חיפה: צה&quot;ל 16." data-ru="Britavsky Team — клуб единоборств: кикбоксинг и контактный бой для детей, подростков и взрослых. Филиал Кирьят-Моцкин: ул. Ранак 35, филиал Хайфа: ул. Цахаль 16."></p>
+      <p class="intro" data-he="בריטבסקי טים הוא מועדון אימוני אומנויות לחימה קיקבוקס וקרב מגע ייחודי לילדים, נוער ובוגרים. 
+סניף קריית מוצקין: רנ&quot;ס 35,
+סניף חיפה: צה&quot;ל 16." data-ru="Britavsky Team — клуб единоборств: кикбоксинг и крав мага для детей, подростков и взрослых.
+סניף קריית מוצקין: רנ&quot;ס 35,
+סניף חיפה: צה&quot;ל 16."></p>
 
+      <div class="home-grid">
       <a class="card" href="https://form.jotform.com/262426118520046" target="_blank" rel="noopener">
         <div class="icon">👤</div>
         <div class="body">
@@ -156,12 +171,14 @@ nav.bottom button.active{color:var(--accent);}
         </div>
         <div class="arrow">‹</div>
       </a>
+      </div>
 
-      <p class="intro" style="margin-top:16px;" data-he="תזכורת להורים ולתלמידים: יש להגיע כמה דקות לפני האימון, להביא מים וציוד אימון מתאים, ולבדוק עדכונים לפני ההגעה." data-ru="Напоминание родителям и ученикам: приходите за несколько минут до тренировки, берите воду и подходящую экипировку, проверяйте обновления перед приходом."></p>
+      <p class="intro warn" data-he="תזכורת להורים ולתלמידים: יש להגיע כמה דקות לפני האימון, להביא מים וציוד אימון מתאים, ולבדוק עדכונים לפני ההגעה." data-ru="Напоминание родителям и ученикам: приходите за несколько минут до тренировки, берите воду и подходящую экипировку, проверяйте обновления перед приходом."></p>
 
       <hr class="div">
 
       <h2 class="section" data-he="הודעות ועדכונים" data-ru="Новости и обновления"></h2>
+      <div class="home-grid">
       <div class="card navcard" data-target="news">
         <div class="icon">📣</div>
         <div class="body">
@@ -178,6 +195,7 @@ nav.bottom button.active{color:var(--accent);}
         </div>
         <div class="arrow">‹</div>
       </div>
+      </div>
 
       <h2 class="section" data-he="פרטי קשר" data-ru="Контакты"></h2>
       <div class="card">
@@ -190,9 +208,14 @@ nav.bottom button.active{color:var(--accent);}
     <!-- SCHEDULE -->
     <section id="view-schedule" class="view">
       <div class="page-title" data-he="מערכת שעות" data-ru="Расписание"></div>
-      <div class="rich" data-he="מגן שינים בקבוצה, כפפות אגרוף במידה מתאימה, מגני רגליים, קסדה + חולצת מועדון — טבלת השעות המלאה לפי ענפים וגילאים מוצגת כאן." data-ru="Капа, перчатки нужного размера, защита ног, шлем + футболка клуба — полная таблица расписания по видам спорта и возрастам представлена здесь."></div>
-      <img class="cover" style="margin-top:12px;" src="https://www.jotform.com/uploads/YuliaSachkov/form_files/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%A9%D7%A2%D7%95%D7%AA%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F-6a9b08ee1156d5.96880496.PNG" alt="Расписание тренировок">
-      <div class="rich" style="margin-top:12px; text-align:center; color:var(--sub);" data-he="לצפייה מלאה במערכת, לחצו על התמונה" data-ru="Для полного просмотра нажмите на изображение"></div>
+      <div class="rich warn">
+        <h3 data-he="חובה להצטייד באימונים" data-ru="Обязательно для посещения тренировок необходимо иметь"></h3>
+        <div class="line" data-he="מגן שינים" data-ru="Капу"></div>
+        <div class="line" data-he="כפפות אגרוף במידה מתאימה" data-ru="Боксёрские перчатки нужного размера"></div>
+        <div class="line" data-he="מגני רגליים" data-ru="Защиту ног"></div>
+        <div class="line" data-he="קסדה + חולצת מועדון" data-ru="Шлем + футболку клуба"></div>
+      </div>
+      <img class="cover" style="margin-top:14px;" src="https://www.jotform.com/uploads/YuliaSachkov/form_files/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%A9%D7%A2%D7%95%D7%AA%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F%20%D7%9E%D7%A2%D7%95%D7%93%D7%9B%D7%9F-6a9b08ee1156d5.96880496.PNG" alt="Расписание тренировок">
     </section>
 
     <!-- NEWS -->
